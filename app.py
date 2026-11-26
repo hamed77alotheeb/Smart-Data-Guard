@@ -1,4 +1,4 @@
-import gradio as gr
+# -*- coding: utf-8 -*-
 import gradio as gr
 from guard_engine import analyze_logs
 
@@ -7,29 +7,28 @@ def run_sample():
 
 def run_uploaded(file):
     if file is None:
-        return "ο©¤ξ ©εγ κιε CSV ν Excel νιρ.", None, None, None
-    file_path = file if isinstance(file, str) else file.name
-    return analyze_logs(file_path)
+        return "ΩΨ±Ψ¬Ω‰ Ψ±ΩΨΉ Ω…Ω„Ω CSV Ψ£Ω Excel Ψ£ΩΩ„Ψ§Ω‹.", None, None, None
+    return analyze_logs(file.name)
 
-with gr.Blocks(title="Smart Data Guard - ι¥©« ι¨θο") as demo:
-    gr.Markdown("# ??? λβκ ι¥©« ι¨θο ι¥κο΅ ι ολΆ (Smart Data Guard)")
-    gr.Markdown("λβκ ¨θ ­αλγο ικ©η ΅ «¤ιΆ ι¬©θΆ νθΆ¬ε ιγκιοΆ ικ¬ νμ΅ νιΆιγ   ι ολΆ Άιηορ.")
-
+with gr.Blocks(title="Smart Data Guard - Ψ§Ω„Ψ­Ψ§Ψ±Ψ³ Ψ§Ω„Ψ°ΩƒΩ") as demo:
+    gr.Markdown("# π›΅οΈ Ω†ΨΈΨ§Ω… Ψ§Ω„Ψ­Ψ§Ψ±Ψ³ Ψ§Ω„Ψ°ΩƒΩ Ω„Ψ­Ω…Ψ§ΩΨ© Ψ§Ω„Ψ¨ΩΨ§Ω†Ψ§Ψª (Smart Data Guard)")
+    gr.Markdown("Ω†ΨΈΨ§Ω… Ψ°ΩƒΨ§Ψ΅ Ψ§ΨµΨ·Ω†Ψ§ΨΉΩ Ω„Ω…Ψ±Ψ§Ω‚Ψ¨Ψ© Ψ³Ψ¬Ω„Ψ§Ψª Ψ§Ω„Ψ΄Ψ±ΩƒΨ§Ψª ΩΨ§ΩƒΨªΨ΄Ψ§Ω Ψ§Ω„ΨΉΩ…Ω„ΩΨ§Ψª Ψ§Ω„Ω…Ψ΄Ψ¨ΩΩ‡Ψ© ΩΨ§Ω„ΨªΩ„Ψ§ΨΉΨ¨ Ψ¨Ψ§Ω„Ψ¨ΩΨ§Ω†Ψ§Ψª ΨªΩ„Ω‚Ψ§Ψ¦ΩΨ§Ω‹.")
+    
     with gr.Row():
-        sample_btn = gr.Button("?? Ά¤© ΅ εν©ο΅  ι ολΆ ιΆ¤©ο ο΅ ιι¬©θ΅", variant="primary")
-
+        sample_btn = gr.Button("π€ ΨªΨ¬Ψ±Ψ¨Ψ© ΩΩΨ±ΩΨ© Ψ¨Ψ§Ω„Ψ¨ΩΨ§Ω†Ψ§Ψª Ψ§Ω„ΨªΨ¬Ψ±ΩΨ¨ΩΨ© Ω„Ω„Ψ΄Ψ±ΩƒΨ©", variant="primary")
+    
     with gr.Row():
-        file_input = gr.File(label="ν ©εγ κιε «¤ι ι¬©θ΅ (CSV ν Excel)", file_types=[".csv", ".xlsx", ".xls"])
-        analyze_btn = gr.Button("?? ε¥­ ικιε ικ©ενγ")
-
-    summary_out = gr.Textbox(label="κι¦­ ιε¥­ νλ« ΅ ι¦α©", lines=3)
-
+        file_input = gr.File(label="Ψ£Ω Ψ§Ψ±ΩΨΉ Ω…Ω„Ω Ψ³Ψ¬Ω„ Ψ§Ω„Ψ΄Ψ±ΩƒΨ© (CSV Ψ£Ω Excel)", file_types=[".csv", ".xlsx", ".xls"])
+        analyze_btn = gr.Button("π” ΩΨ­Ψµ Ψ§Ω„Ω…Ω„Ω Ψ§Ω„Ω…Ψ±ΩΩΨΉ")
+        
+    summary_out = gr.Textbox(label="Ω…Ω„Ψ®Ψµ Ψ§Ω„ΩΨ­Ψµ ΩΩ†Ψ³Ψ¨Ψ© Ψ§Ω„Ψ®Ψ·Ψ±", lines=3)
+    
     with gr.Row():
-        chart_out = gr.Image(label="ι©«κ ι ολο ιιγκιοΆ")
-        report_out = gr.File(label="Ά¥κοι Άη©ο© ικ¦ιεΆ (CSV)")
-
-    alerts_table = gr.Dataframe(label="¤§νι ιγκιοΆ ικ¬ νμ΅ νιΆλ ομΆ ιεν©ο΅ ιικ§ο©")
-
+        chart_out = gr.Image(label="Ψ§Ω„Ψ±Ψ³Ω… Ψ§Ω„Ψ¨ΩΨ§Ω†Ω Ω„Ω„ΨΉΩ…Ω„ΩΨ§Ψª")
+        report_out = gr.File(label="ΨªΨ­Ω…ΩΩ„ ΨªΩ‚Ψ±ΩΨ± Ψ§Ω„Ω…Ψ®Ψ§Ω„ΩΨ§Ψª (CSV)")
+        
+    alerts_table = gr.Dataframe(label="Ψ¬Ψ―ΩΩ„ Ψ§Ω„ΨΉΩ…Ω„ΩΨ§Ψª Ψ§Ω„Ω…Ψ΄Ψ¨ΩΩ‡Ψ© ΩΨ§Ω„ΨªΩ†Ψ¨ΩΩ‡Ψ§Ψª Ψ§Ω„ΩΩΨ±ΩΨ© Ω„Ω„Ω…Ψ―ΩΨ±")
+    
     sample_btn.click(fn=run_sample, outputs=[summary_out, alerts_table, chart_out, report_out])
     analyze_btn.click(fn=run_uploaded, inputs=[file_input], outputs=[summary_out, alerts_table, chart_out, report_out])
 
